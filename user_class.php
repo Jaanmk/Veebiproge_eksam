@@ -35,7 +35,7 @@ class userCreate {
 
         }
         $stmt->close();
-        $stmt = $this->connection->prepare("INSERT INTO users (username, password) VALUES (?,?)");
+        $stmt = $this->connection->prepare("INSERT INTO userbase (username, password) VALUES (?,?)");
         $stmt->bind_param("ss", $username, $password);
 
         if($stmt->execute()){
@@ -44,6 +44,7 @@ class userCreate {
             $success->message = "Kasutaja edukalt loodud";
 
             $response->success = $success;
+            header("Location: /index.php");
 
 
         } else {
@@ -119,14 +120,14 @@ class userLogin {
     }
 
 }
-class userEdit {
+class conEdit {
     private $connection;
 
     function __construct($connection){
         $this->connection = $connection;
     }
 
-    function editUser($userfirstname, $userlastname, $useraddress){
+    function editUser($con_firstname, $con_lastname, $_con_phone){
 
         $response = new StdClass();
 

@@ -9,7 +9,7 @@ require_once(__DIR__.'/functions.php');
 require_once(__DIR__.'/user_class.php');
 
 if(isset($_SESSION['logged_in_user_id'])){
-    header("Location: /index.php");}
+  header("Location: /index.php");}
 
 $userCreate = new userCreate($connection);
 $userLogin = new userLogin($connection);
@@ -45,14 +45,14 @@ if(isset($response->success->user->id)){
     $_SESSION['logged_in_user_username'] = $response->success->user->username;
 }
 $page_title = "Register";
-$page_file_name = "create.php";
-
-exit();
+$page_file_name = "create_user.php";
+var_dump($_SESSION);
 
 
 ?>
+
 <html>
-<? var_dump($_SESSION);?>
+<body>
 <div class="text">Create User</div>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <?php if(isset($response->success)):	 ?>
@@ -74,4 +74,5 @@ exit();
     <input name="create" type="submit" value="Create User">
     <br><br>
 </form>
+</body>
 </html>
