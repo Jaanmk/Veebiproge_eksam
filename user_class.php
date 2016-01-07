@@ -161,10 +161,30 @@ class conInsert {
 class getAllUsers{
     private $connection;
 
+
     function __construct($connection){
         $this->connection = $connection;
     }
     function getAllUsers($keyword=""){
+        if(isset($keyword2)){
+            $search = "%".$keyword."%";
+            $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (badge LIKE ?)");
+            echo $this->connection->error;
+            $stmt->bind_param("s", $search);
+            $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
+            $stmt->execute();
+            $array = array();
+            while($stmt->fetch()) {
+
+                $users = new StdClass();
+                $users->id = $id_from_db;
+                $users->first_name = $first_name_from_db;
+                $users->last_name = $last_name_from_db;
+                $users->phone = $phone_from_db;
+                $users->badge = $badge_from_db;
+                array_push($array, $users);
+
+            }}else{
 
         if($keyword == ""){
             //ei otsi
@@ -173,10 +193,10 @@ class getAllUsers{
             //otsime
             $search = "%".$keyword."%";
         }
-        $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number FROM contacts WHERE deleted IS NULL AND (last_name LIKE ?)");
+        $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (last_name LIKE ?)");
         echo $this->connection->error;
         $stmt->bind_param("s", $search);
-        $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db);
+        $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
         $stmt->execute();
         $array = array();
         while($stmt->fetch()){
@@ -186,12 +206,13 @@ class getAllUsers{
             $users->first_name = $first_name_from_db;
             $users->last_name = $last_name_from_db;
             $users->phone = $phone_from_db;
+            $users->badge = $badge_from_db;
             array_push($array, $users);
 
         }
 
         return $array;
-    }
+    }}
 }
 class deleteUsers{
     private $connection;
@@ -216,11 +237,11 @@ class updateUsers{
     function __construct($connection){
         $this->connection = $connection;
     }
-    function updateUsers($first_name, $last_name, $phone, $id){
+    function updateUsers($first_name, $last_name, $phone, $id, $badge){
 
-        $stmt = $this->connection->prepare("UPDATE contacts SET first_name=?, last_name=?, phone_number=? WHERE id=?");
+        $stmt = $this->connection->prepare("UPDATE contacts SET first_name=?, last_name=?, phone_number=?, badge=? WHERE id=?");
         echo $this->connection->error;
-        $stmt->bind_param("ssss", $first_name, $last_name, $phone, $id);
+        $stmt->bind_param("sssss", $first_name, $last_name, $phone, $badge, $id);
         $stmt->execute();
 
         // tühjendame aadressirea
