@@ -7,9 +7,9 @@
  */
 require_once(__DIR__.'/functions.php');
 require_once(__DIR__.'/user_class.php');
-if(is_null($_SESSION['logged_in_user_id'])){
+if(isset($_GET["logout"])){
     session_destroy();
-    header("Location: /index.php");
+    header("Location: index.php");
 }
 
 $conInsert = new conInsert($connection);
@@ -64,6 +64,15 @@ if(isset($_GET["keyword"])){
 
 ?>
 <html>
+<form class="navbar-form navbar-right" role="logout">
+    <div>
+        <?php
+        if(isset($_SESSION['logged_in_user_id'])){
+            echo '<p class="navbar-text" id="signed_in">Signed in as ',$_SESSION['logged_in_user_username'],'</p>';
+            echo '<a href="?logout" class="btn btn-default navbar-link">Logout</a>';
+        }?>
+    </div>
+</form>
 </div>
 <div class="col-sm-2">
     <label class="text"> Otsi kasutajat </label>
