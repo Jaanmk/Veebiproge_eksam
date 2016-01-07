@@ -58,7 +58,11 @@ $keyword = "";
 if(isset($_GET["keyword"])){
     $keyword = $_GET["keyword"];
     $users_array = $getAllUsers->getAllUsers($keyword);
-}else{
+}elseif(isset($_GET['keyword2'])){
+    $keyword = $_GET["keyword2"];
+    $users_array = $getAllUsers->getAllUsers2($keyword);
+}
+else{
     $users_array = $getAllUsers->getAllUsers();
 }
 
@@ -81,13 +85,11 @@ if(isset($_GET["keyword"])){
         <input type="submit" value="otsi" class="btn btn-info btn-block">
     </form>
 </div>
-<div class="col-sm-2">
-    <label class="text"> Markeering </label>
-    <form action="/table.php" method="get">
-        <input class="form-control" name="keyword2" type="search" value="<?=$keyword?>" ><br>
-        <input type="submit" value="otsi" class="btn btn-info btn-block">
-    </form>
-</div>
+
+
+
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-3">

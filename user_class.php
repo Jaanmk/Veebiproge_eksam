@@ -166,25 +166,73 @@ class getAllUsers{
         $this->connection = $connection;
     }
     function getAllUsers($keyword=""){
-        if(isset($keyword2)){
-            $search = "%".$keyword."%";
-            $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (badge LIKE ?)");
-            echo $this->connection->error;
-            $stmt->bind_param("s", $search);
-            $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
-            $stmt->execute();
-            $array = array();
-            while($stmt->fetch()) {
 
-                $users = new StdClass();
-                $users->id = $id_from_db;
-                $users->first_name = $first_name_from_db;
-                $users->last_name = $last_name_from_db;
-                $users->phone = $phone_from_db;
-                $users->badge = $badge_from_db;
-                array_push($array, $users);
+    $search = "%".$keyword2."%";
+    $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (badge LIKE ?)");
+    echo $this->connection->error;
+    $stmt->bind_param("s", $search);
+    $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
+    $stmt->execute();
+    $array = array();
+    while($stmt->fetch()) {
 
-            }}else{
+        $users = new StdClass();
+        $users->id = $id_from_db;
+        $users->first_name = $first_name_from_db;
+        $users->last_name = $last_name_from_db;
+        $users->phone = $phone_from_db;
+        $users->badge = $badge_from_db;
+        array_push($array, $users);
+
+    }
+
+    if($keyword == ""){
+        //ei otsi
+        $search = "%%";
+    }else{
+        //otsime
+        $search = "%".$keyword."%";
+    }
+    $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (last_name LIKE ?)");
+    echo $this->connection->error;
+    $stmt->bind_param("s", $search);
+    $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
+    $stmt->execute();
+    $array = array();
+    while($stmt->fetch()){
+
+        $users = new StdClass();
+        $users->id = $id_from_db;
+        $users->first_name = $first_name_from_db;
+        $users->last_name = $last_name_from_db;
+        $users->phone = $phone_from_db;
+        $users->badge = $badge_from_db;
+        array_push($array, $users);
+
+    }
+
+    return $array;
+}
+    function getAllUsers2($keyword=""){
+
+        $search = "%".$keyword."%";
+        $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (badge LIKE ?)");
+        echo $this->connection->error;
+        $stmt->bind_param("s", $search);
+        $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
+        $stmt->execute();
+        $array = array();
+        while($stmt->fetch()) {
+
+            $users = new StdClass();
+            $users->id = $id_from_db;
+            $users->first_name = $first_name_from_db;
+            $users->last_name = $last_name_from_db;
+            $users->phone = $phone_from_db;
+            $users->badge = $badge_from_db;
+            array_push($array, $users);
+
+        }
 
         if($keyword == ""){
             //ei otsi
@@ -212,7 +260,7 @@ class getAllUsers{
         }
 
         return $array;
-    }}
+    }
 }
 class deleteUsers{
     private $connection;

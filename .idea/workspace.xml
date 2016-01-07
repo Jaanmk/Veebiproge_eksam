@@ -62,11 +62,11 @@
       <file leaf-file-name="table.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.72">
-              <caret line="74" column="7" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
+            <state vertical-scroll-proportion="0.28">
+              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
               <folding>
                 <element signature="e#391#1208#0#PHP" expanded="false" />
-                <element signature="n#div#2;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -75,21 +75,23 @@
       <file leaf-file-name="user_class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/user_class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="12.419354">
-              <caret line="186" column="14" selection-start-line="186" selection-start-column="14" selection-end-line="186" selection-end-column="14" />
+            <state vertical-scroll-proportion="-21.64516">
+              <caret line="186" column="5" selection-start-line="175" selection-start-column="4" selection-end-line="186" selection-end-column="5" />
               <folding>
                 <element signature="n#userLogin#0;n#!!top" expanded="false" />
                 <element signature="n#conInsert#0;n#!!top" expanded="false" />
                 <element signature="n#updateUsers#0;n#!!top" expanded="false" />
-                <marker date="1452178384301" expanded="true" signature="395:435" placeholder="SELECT id FR..userbase..." />
-                <marker date="1452178384301" expanded="true" signature="889:943" placeholder="INSERT INTO userbase..." />
-                <marker date="1452178384301" expanded="true" signature="1770:1810" placeholder="SELECT id FR..userbase..." />
-                <marker date="1452178384301" expanded="true" signature="2225:2294" placeholder="SELECT id, u..userbase..." />
-                <marker date="1452178384301" expanded="true" signature="3436:3509" placeholder="INSERT INTO ..." />
-                <marker date="1452178384301" expanded="true" signature="4448:4556" placeholder="SELECT id, f..contacts..." />
-                <marker date="1452178384301" expanded="true" signature="5430:5542" placeholder="SELECT id, f..contacts..." />
-                <marker date="1452178384301" expanded="true" signature="6389:6433" placeholder="UPDATE conta..." />
-                <marker date="1452178384301" expanded="true" signature="6788:6869" placeholder="UPDATE conta..." />
+                <marker date="1452180077363" expanded="true" signature="395:435" placeholder="SELECT id FR..userbase..." />
+                <marker date="1452180077363" expanded="true" signature="889:943" placeholder="INSERT INTO userbase..." />
+                <marker date="1452180077363" expanded="true" signature="1770:1810" placeholder="SELECT id FR..userbase..." />
+                <marker date="1452180077363" expanded="true" signature="2225:2294" placeholder="SELECT id, u..userbase..." />
+                <marker date="1452180077363" expanded="true" signature="3436:3509" placeholder="INSERT INTO ..." />
+                <marker date="1452180077363" expanded="true" signature="4404:4512" placeholder="SELECT id, f..contacts..." />
+                <marker date="1452180077363" expanded="true" signature="5236:5348" placeholder="SELECT id, f..contacts..." />
+                <marker date="1452180077363" expanded="true" signature="6037:6145" placeholder="SELECT id, f..contacts..." />
+                <marker date="1452180077363" expanded="true" signature="6957:7069" placeholder="SELECT id, f..contacts..." />
+                <marker date="1452180077363" expanded="true" signature="7915:7959" placeholder="UPDATE conta..." />
+                <marker date="1452180077363" expanded="true" signature="8314:8395" placeholder="UPDATE conta..." />
               </folding>
             </state>
           </provider>
@@ -280,32 +282,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/user_class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="12.419354">
-          <caret line="186" column="14" selection-start-line="186" selection-start-column="14" selection-end-line="186" selection-end-column="14" />
+        <state vertical-scroll-proportion="-21.64516">
+          <caret line="186" column="5" selection-start-line="175" selection-start-column="4" selection-end-line="186" selection-end-column="5" />
           <folding>
             <element signature="n#userLogin#0;n#!!top" expanded="false" />
             <element signature="n#conInsert#0;n#!!top" expanded="false" />
             <element signature="n#updateUsers#0;n#!!top" expanded="false" />
-            <marker date="1452178384301" expanded="true" signature="395:435" placeholder="SELECT id FR..userbase..." />
-            <marker date="1452178384301" expanded="true" signature="889:943" placeholder="INSERT INTO userbase..." />
-            <marker date="1452178384301" expanded="true" signature="1770:1810" placeholder="SELECT id FR..userbase..." />
-            <marker date="1452178384301" expanded="true" signature="2225:2294" placeholder="SELECT id, u..userbase..." />
-            <marker date="1452178384301" expanded="true" signature="3436:3509" placeholder="INSERT INTO ..." />
-            <marker date="1452178384301" expanded="true" signature="4448:4556" placeholder="SELECT id, f..contacts..." />
-            <marker date="1452178384301" expanded="true" signature="5430:5542" placeholder="SELECT id, f..contacts..." />
-            <marker date="1452178384301" expanded="true" signature="6389:6433" placeholder="UPDATE conta..." />
-            <marker date="1452178384301" expanded="true" signature="6788:6869" placeholder="UPDATE conta..." />
+            <marker date="1452180077363" expanded="true" signature="395:435" placeholder="SELECT id FR..userbase..." />
+            <marker date="1452180077363" expanded="true" signature="889:943" placeholder="INSERT INTO userbase..." />
+            <marker date="1452180077363" expanded="true" signature="1770:1810" placeholder="SELECT id FR..userbase..." />
+            <marker date="1452180077363" expanded="true" signature="2225:2294" placeholder="SELECT id, u..userbase..." />
+            <marker date="1452180077363" expanded="true" signature="3436:3509" placeholder="INSERT INTO ..." />
+            <marker date="1452180077363" expanded="true" signature="4404:4512" placeholder="SELECT id, f..contacts..." />
+            <marker date="1452180077363" expanded="true" signature="5236:5348" placeholder="SELECT id, f..contacts..." />
+            <marker date="1452180077363" expanded="true" signature="6037:6145" placeholder="SELECT id, f..contacts..." />
+            <marker date="1452180077363" expanded="true" signature="6957:7069" placeholder="SELECT id, f..contacts..." />
+            <marker date="1452180077363" expanded="true" signature="7915:7959" placeholder="UPDATE conta..." />
+            <marker date="1452180077363" expanded="true" signature="8314:8395" placeholder="UPDATE conta..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72">
-          <caret line="74" column="7" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.28">
+          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="87" selection-end-column="0" />
           <folding>
             <element signature="e#391#1208#0#PHP" expanded="false" />
-            <element signature="n#div#2;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
