@@ -6,6 +6,7 @@
  * Date: 7.01.2016
  * Time: 14:02
  */
+require_once(__DIR__.'/functions.php');
 
 class userCreate {
     private $connection;
@@ -34,7 +35,7 @@ class userCreate {
 
         }
         $stmt->close();
-        $stmt = $this->connection->prepare("INSERT INTO userbase (username, password) VALUES (?,?)");
+        $stmt = $this->connection->prepare("INSERT INTO users (username, password) VALUES (?,?)");
         $stmt->bind_param("ss", $username, $password);
 
         if($stmt->execute()){
@@ -156,11 +157,22 @@ class userEdit {
     }
 
 }
-class getAllContacts
+class getAllUsers{
+    private $connection;
+
+    function __construct($connection){
+        $this->connection = $connection;
+    }
+    function getAllUsers($keyword=""){
+
+        if($keyword == ""){
+            //ei otsi
+            $search = "%%";
+        }else{
             //otsime
             $search = "%".$keyword."%";
         }
-        $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number from contacts WHERE deleted IS NULL AND (username LIKE ?)");
+        $stmt = $this->connection->prepare("SELECT id, first_name, last_name, address, username, creation_date, privileges from users WHERE deleted IS NULL AND (username LIKE ?)");
         $stmt->bind_param("s", $search);
         $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $address_from_db, $username_from_db, $creation_date_from_db, $privileges_from_db);
         $stmt->execute();
@@ -218,4 +230,3 @@ class updateUsers{
 
     }
 }
-

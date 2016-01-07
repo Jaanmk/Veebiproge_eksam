@@ -44,7 +44,7 @@ $_SESSION['logged_in_user_id'] = $response->success->user->id;
 
 <body>
 
-  <a href="create.user.php">Create a User</a>
+  <a href="create_user.php">Create a User</a>
 
 
   <div id="login" class="container-fluid">
