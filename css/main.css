@@ -1,0 +1,30 @@
+.block {
+    padding: 20px;
+    margin: 25px;
+    min-width: 250px;
+    flex-basis: 300px;
+    flex-grow: 3;
+    flex-shrink: 1;
+    background-color: #8CC5FF;
+}
+.main{
+    margin-left: 50px;
+    margin-right: 50px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+h1 {
+    font-size: 4em;
+    color: black;
+    text-align: center;
+}
+h2 {
+    font-size: 4em;
+    color: black;
+    text-align: center;
+}
+table, th, td {
+    border: 1px solid black;
+}

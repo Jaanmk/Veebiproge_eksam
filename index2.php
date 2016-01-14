@@ -49,37 +49,37 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 }
 
 
-?>
-<?php
+
 $_SESSION['logged_in_uid'] = $response->success->user->id;
 $_SESSION['logged_in_username'] = $response->success->user->username;
 if(isset($_SESSION['logged_in_uid'])){
-    header("Location: /table2.php");
+    header("Location: /pages/table2.php");
 }
 ?>
-<!DOCTYPE html>
-<html lang="et"">
-<head>
-    <meta charset="utf-8">
-    <title>Smth Smth</title>
-</head>
+<?require_once(__DIR__.'/pages/header.php');?>
 <body>
-<?var_dump($_SESSION);?>
-    <div id="main">
-        <div id="login">
+
+    <div class="main">
+        <div class="block"">
             <form action="<?php echo $_SERVER["PHP_SELF"]?> " method="post">
-            <h1>User login</h1>
-            <p>Username</p>
-            <input name="loginusername" type="text" placeholder="Username"><?php echo"$username_error";?>
-            <br>
-            <p>Password</p>
-            <input name="loginpassword" type="text" placeholder="Password"><?php echo"$pw_error";?>
-            <br>
+
+            <h1>Login</h1>
+                <p>
+                <label for="loginusername">Username</label>
+                <input name="loginusername" type="text" placeholder="Username"><?php echo"$username_error";?>
+                </p>
+                <p>
+
+                <label for="loginpassword">Password</label>
+                <input name="loginpassword" type="text" placeholder="Password"><?php echo"$pw_error";?>
+                </p>
+                <p>
             <button name="login"type="submit">Login</button>
+                </p>
             </form>
         </div>
 
-        <div id="create">
+        <div class="block"">
 
             <form action="<?php echo $_SERVER["PHP_SELF"]?> " method="post">
             <h1>Create User</h1>
@@ -94,13 +94,17 @@ if(isset($_SESSION['logged_in_uid'])){
 
                 <?php	endif; ?>
              </h2>
-                <p>Username</p>
+            <p>
+                <label for="createusername">Username</label>
             <input name="createusername" type="text" placeholder="Username">
-            <br>
-            <p>Password</p>
+            </p>
+            <p>
+                <label for="createpassword">Password</label>
             <input name="createpassword" type="text" placeholder="Password">
-            <br>
+            </p>
+                <p>
             <button name="create" type="submit">Create User</button>
+                </p>
             </form>
         </div>
     </div>

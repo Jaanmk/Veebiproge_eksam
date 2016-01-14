@@ -120,20 +120,20 @@ class userLogin {
     }
 
 }
-class conInsert {
+class conEdit {
     private $connection;
 
     function __construct($connection){
         $this->connection = $connection;
     }
 
-    function editUser($contact_firstname, $contact_lastname, $contact_phone){
+    function editUser($con_firstname, $con_lastname, $_con_phone){
 
         $response = new StdClass();
 
-        $stmt = $this->connection->prepare("INSERT INTO contacts (first_name, last_name, phone_number) VALUES (?,?,?)" );
+        $stmt = $this->connection->prepare("UPDATE users SET first_name=?, last_name=?, address=? WHERE id=?" );
         #echo($this->connection->error);
-        $stmt->bind_param("sss", $contact_firstname, $contact_lastname, $contact_phone);
+        $stmt->bind_param("sssi", $userfirstname, $userlastname, $useraddress, $_SESSION['logged_in_user_id']);
         //$stmt->execute();
         //echo($this->connection->error);
         if($stmt->execute()){
@@ -161,78 +161,10 @@ class conInsert {
 class getAllUsers{
     private $connection;
 
-
     function __construct($connection){
         $this->connection = $connection;
     }
     function getAllUsers($keyword=""){
-
-    $search = "%".$keyword2."%";
-    $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (badge LIKE ?)");
-    echo $this->connection->error;
-    $stmt->bind_param("s", $search);
-    $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
-    $stmt->execute();
-    $array = array();
-    while($stmt->fetch()) {
-
-        $users = new StdClass();
-        $users->id = $id_from_db;
-        $users->first_name = $first_name_from_db;
-        $users->last_name = $last_name_from_db;
-        $users->phone = $phone_from_db;
-        $users->badge = $badge_from_db;
-        array_push($array, $users);
-
-    }
-
-    if($keyword == ""){
-        //ei otsi
-        $search = "%%";
-    }else{
-        //otsime
-        $search = "%".$keyword."%";
-    }
-    $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (last_name LIKE ?)");
-    echo $this->connection->error;
-    $stmt->bind_param("s", $search);
-    $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
-    $stmt->execute();
-    $array = array();
-    while($stmt->fetch()){
-
-        $users = new StdClass();
-        $users->id = $id_from_db;
-        $users->first_name = $first_name_from_db;
-        $users->last_name = $last_name_from_db;
-        $users->phone = $phone_from_db;
-        $users->badge = $badge_from_db;
-        array_push($array, $users);
-
-    }
-
-    return $array;
-}
-    function getAllUsers2($keyword=""){
-
-        $search = "%".$keyword."%";
-        $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (badge LIKE ?)");
-        echo $this->connection->error;
-        $stmt->bind_param("s", $search);
-        $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
-        $stmt->execute();
-        $array = array();
-        while($stmt->fetch()) {
-
-            $users = new StdClass();
-            $users->id = $id_from_db;
-            $users->first_name = $first_name_from_db;
-            $users->last_name = $last_name_from_db;
-            $users->phone = $phone_from_db;
-            $users->badge = $badge_from_db;
-            array_push($array, $users);
-
-        }
 
         if($keyword == ""){
             //ei otsi
@@ -241,20 +173,21 @@ class getAllUsers{
             //otsime
             $search = "%".$keyword."%";
         }
-        $stmt = $this->connection->prepare("SELECT id, first_name, last_name, phone_number, badge FROM contacts WHERE deleted IS NULL AND (last_name LIKE ?)");
-        echo $this->connection->error;
+        $stmt = $this->connection->prepare("SELECT id, first_name, last_name, address, username, creation_date, privileges from users WHERE deleted IS NULL AND (username LIKE ?)");
         $stmt->bind_param("s", $search);
-        $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $phone_from_db, $badge_from_db);
+        $stmt->bind_result($id_from_db, $first_name_from_db, $last_name_from_db, $address_from_db, $username_from_db, $creation_date_from_db, $privileges_from_db);
         $stmt->execute();
         $array = array();
         while($stmt->fetch()){
 
             $users = new StdClass();
             $users->id = $id_from_db;
+            $users->address = $address_from_db;
             $users->first_name = $first_name_from_db;
+            $users->username = $username_from_db;
+            $users->creation_date = $creation_date_from_db;
             $users->last_name = $last_name_from_db;
-            $users->phone = $phone_from_db;
-            $users->badge = $badge_from_db;
+            $users->privileges = $privileges_from_db;
             array_push($array, $users);
 
         }
@@ -270,7 +203,7 @@ class deleteUsers{
     }
     function deleteUsers($user_id){
 
-        $stmt = $this->connection->prepare("UPDATE contacts SET deleted=NOW() WHERE id=?");
+        $stmt = $this->connection->prepare("UPDATE users SET deleted=NOW() WHERE ID=?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();
 
@@ -285,11 +218,10 @@ class updateUsers{
     function __construct($connection){
         $this->connection = $connection;
     }
-    function updateUsers($first_name, $last_name, $phone, $id, $badge){
+    function updateUsers($first_name_to_db, $last_name_to_db, $address_to_db, $creation_date_to_db, $privileges_to_db, $id_to_db){
 
-        $stmt = $this->connection->prepare("UPDATE contacts SET first_name=?, last_name=?, phone_number=?, badge=? WHERE id=?");
-        echo $this->connection->error;
-        $stmt->bind_param("sssss", $first_name, $last_name, $phone, $badge, $id);
+        $stmt = $this->connection->prepare("UPDATE users SET first_name=?, last_name=?, address=?, creation_date=?, privileges=? WHERE id=?");
+        $stmt->bind_param("sssssi",$first_name_to_db, $last_name_to_db, $address_to_db, $creation_date_to_db, $privileges_to_db, $id_to_db);
         $stmt->execute();
 
         // tühjendame aadressirea
@@ -299,5 +231,3 @@ class updateUsers{
 
     }
 }
-
-?>
