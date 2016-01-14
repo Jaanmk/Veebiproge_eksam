@@ -96,8 +96,11 @@
 	}
 	?>
 </select>
-<button type="submit" class="btn btn-info btn-block">Otsi</button>
+<button type="submit" >Otsi</button>
+
+
 </form>
+<button onclick="window.location.href='table.php'">Puhasta otsing</button>
 </div>
 			<table >
 				<tr>
